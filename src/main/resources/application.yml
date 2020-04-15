@@ -1,0 +1,37 @@
+spring:
+  application:
+    name: learn-storm
+#  profiles:
+#    active: datasource,redis
+  kafka:
+    spoutTopic: test1
+    servers:  10.19.83.85:6667,10.19.83.86:6667,10.19.83.87:6667
+
+
+zookeeper:
+  servers: 10.19.83.82:2181,10.19.83.84:2181,10.19.83.85:2181,10.19.83.86:2181,10.19.83.87:2181
+  port: 2181
+
+storm:
+  # 自定义任务名
+  topologyName: learn-storm-topo
+  # worker 数（进程数）
+  workerNum: 1
+  # 输入并行度（线程数，配置小于等于 partition 个数）
+  spoutParallelism: 1
+  # bolt 处理并行度（线程数）
+  boltParallelism: 3
+  # 是否本地提交
+  isLocal: true
+  # tick 间隔时长（单位：秒）
+  emitFrequencyInSeconds: 60
+  # 在 zookeeper 中存储 kafkaSpot offset 位置的根目录
+  offsetZKRoot: /brokers/spouts
+  # 与 kafka 服务端连接超时时间，单位 ms
+  socketTimeoutMs: 60000
+
+
+
+
+
+
